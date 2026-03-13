@@ -4,11 +4,18 @@ import React, { useState } from 'react';
 import { Sparkles, Instagram, Youtube, Send, Loader2, ArrowRight, Share2, Copy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { generateSocialContent } from '@/lib/social-engine';
+import { getHitStats, incrementHit } from '@/lib/counter-store';
 
 export default function Home() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
+  const [stats, setStats] = useState({ total: 0, today: 0 });
+
+  React.useEffect(() => {
+    incrementHit();
+    setStats(getHitStats());
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +53,38 @@ export default function Home() {
         >
           콘텐츠를 마법처럼<br />자동으로 생성하세요
         </motion.h1>
+
+        {/* Stats Dashboard */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+          className="flex flex-wrap justify-center gap-4 mt-8"
+        >
+          <div className="glass-card px-8 py-4 text-left min-w-[200px] border-purple-500/20">
+            <p className="text-purple-400 text-xs font-bold uppercase tracking-widest mb-1">Total Hits</p>
+            <div className="text-3xl font-black text-white flex items-baseline gap-1">
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {stats.total.toLocaleString()}
+              </motion.span>
+              <span className="text-xs text-purple-500/50">+</span>
+            </div>
+          </div>
+          <div className="glass-card px-8 py-4 text-left min-w-[200px] border-pink-500/20">
+            <p className="text-pink-400 text-xs font-bold uppercase tracking-widest mb-1">Today's Magic</p>
+            <div className="text-3xl font-black text-white">
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {stats.today.toLocaleString()}
+              </motion.span>
+            </div>
+          </div>
+        </motion.div>
       </section>
 
       {/* Input Section */}
