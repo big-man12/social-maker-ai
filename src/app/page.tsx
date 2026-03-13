@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { Sparkles, Instagram, Youtube, Send, Loader2, ArrowRight, Share2, Copy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { generateSocialContent } from '@/lib/social-engine';
-import { getHitStats, incrementHit } from '@/lib/counter-store';
+import { generateSocialContent } from '../lib/social-engine';
+import { getHitStats, incrementHit } from '../lib/counter-store';
 
 export default function Home() {
   const [input, setInput] = useState("");
