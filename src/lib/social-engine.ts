@@ -7,8 +7,8 @@ export async function generateSocialContent(input: string) {
   }
   
   const genAI = new GoogleGenerativeAI(apiKey);
-  // 1.5-flash가 무료 티어에서 가장 안정적이고 할당량이 넉넉합니다.
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  // 1.5-flash-latest를 사용하여 최신 안정 버전 보장
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
 
   const prompt = `
     당신은 소셜 미디어 마케팅 전문가입니다. 아래 내용을 분석하여 인스타그램과 유튜브 쇼츠 용 콘텐츠를 생성해 주세요.

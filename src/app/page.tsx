@@ -138,7 +138,9 @@ export default function Home() {
                 <Copy size={18} className="text-gray-500 cursor-pointer hover:text-white transition" />
               </div>
               <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed">
-                {result.split("2.")[0].replace("1.", "").trim()}
+                {result.startsWith("콘텐츠 생성 오류") 
+                  ? result 
+                  : result.split("2.")[0].replace("1.", "").trim()}
               </div>
             </div>
 
@@ -151,7 +153,9 @@ export default function Home() {
                 <Copy size={18} className="text-gray-500 cursor-pointer hover:text-white transition" />
               </div>
               <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed">
-                {result.includes("2.") ? result.split("2.")[1].split("3.")[0].trim() : "생성 중..."}
+                {result.startsWith("콘텐츠 생성 오류")
+                  ? "에러가 발생했습니다."
+                  : (result.includes("2.") ? result.split("2.")[1].split("3.")[0].trim() : "생성 중...")}
               </div>
             </div>
 
