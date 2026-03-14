@@ -62,7 +62,7 @@ export default function Home() {
           transition={{ delay: 0.1 }}
           className="text-5xl md:text-8xl font-black tracking-tight leading-tight bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 bg-clip-text text-transparent"
         >
-          AI 콘텐츠 생성 v6.0<br />자동으로 만드세요
+          AI 콘텐츠 생성 v7.0<br />자동으로 만드세요
         </motion.h1>
 
         {/* Stats Dashboard */}
@@ -138,8 +138,8 @@ export default function Home() {
                 <Copy size={18} className="text-gray-500 cursor-pointer hover:text-white transition" />
               </div>
               <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed">
-                {result.startsWith("콘텐츠 생성 오류") 
-                  ? result 
+                {result.includes("콘텐츠 생성 오류") 
+                  ? <span className="text-red-400">{result}</span>
                   : result.split("2.")[0].replace("1.", "").trim()}
               </div>
             </div>
@@ -153,8 +153,8 @@ export default function Home() {
                 <Copy size={18} className="text-gray-500 cursor-pointer hover:text-white transition" />
               </div>
               <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed">
-                {result.startsWith("콘텐츠 생성 오류")
-                  ? "에러가 발생했습니다."
+                {result.includes("콘텐츠 생성 오류")
+                  ? "데이터 생성 실패"
                   : (result.includes("2.") ? result.split("2.")[1].split("3.")[0].trim() : "생성 중...")}
               </div>
             </div>
