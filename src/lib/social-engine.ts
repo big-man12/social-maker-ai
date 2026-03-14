@@ -7,8 +7,8 @@ export async function generateSocialContent(input: string) {
   }
   
   const genAI = new GoogleGenerativeAI(apiKey);
-  // 1.5-flash-latest를 사용하여 최신 안정 버전 보장
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-latest" });
+  // 가장 표준적이고 호환성이 높은 모델 ID인 gemini-1.5-flash를 사용합니다.
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   const prompt = `
     당신은 소셜 미디어 마케팅 전문가입니다. 아래 내용을 분석하여 인스타그램과 유튜브 쇼츠 용 콘텐츠를 생성해 주세요.

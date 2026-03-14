@@ -62,7 +62,7 @@ export default function Home() {
           transition={{ delay: 0.1 }}
           className="text-5xl md:text-8xl font-black tracking-tight leading-tight bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 bg-clip-text text-transparent"
         >
-          AI 콘텐츠 생성 v4.0<br />자동으로 만드세요
+          AI 콘텐츠 생성 v5.0<br />자동으로 만드세요
         </motion.h1>
 
         {/* Stats Dashboard */}
