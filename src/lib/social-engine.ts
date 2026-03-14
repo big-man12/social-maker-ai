@@ -6,9 +6,9 @@ export async function generateSocialContent(input: string) {
       return "콘텐츠 생성 오류: 서버 환경 변수에서 API 키를 찾을 수 없습니다. (GOOGLE_API_KEY missing)";
   }
   
+  // API 버전을 v1으로 명시하여 404 Not Found 이슈를 원천 차단합니다.
   const genAI = new GoogleGenerativeAI(apiKey);
-  // 가장 표준적이고 호환성이 높은 모델 ID인 gemini-1.5-flash를 사용합니다.
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }, { apiVersion: "v1" });
 
   const prompt = `
     당신은 소셜 미디어 마케팅 전문가입니다. 아래 내용을 분석하여 인스타그램과 유튜브 쇼츠 용 콘텐츠를 생성해 주세요.
