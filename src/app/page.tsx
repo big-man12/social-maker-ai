@@ -10,7 +10,18 @@ export default function Home() {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<string | null>(null);
+  const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const [stats, setStats] = useState({ total: 0, today: 0 });
+
+  const handleCopy = async (text: string, type: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopyStatus(type);
+      setTimeout(() => setCopyStatus(null), 2000);
+    } catch (err) {
+      console.error('Failed to copy text: ', err);
+    }
+  };
 
   React.useEffect(() => {
     incrementHit();
@@ -135,7 +146,17 @@ export default function Home() {
                   <Instagram size={24} />
                   인스타그램 콘텐츠
                 </h2>
-                <Copy size={18} className="text-gray-500 cursor-pointer hover:text-white transition" />
+                <div className="flex items-center gap-2">
+                  {copyStatus === 'instagram' && <span className="text-xs text-pink-400 animate-pulse">복사됨!</span>}
+                  <Copy 
+                    size={18} 
+                    className={`cursor-pointer transition ${copyStatus === 'instagram' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                    onClick={() => {
+                      const text = result.split("2.")[0].replace("1.", "").trim();
+                      handleCopy(text, 'instagram');
+                    }}
+                  />
+                </div>
               </div>
               <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed">
                 {result.includes("콘텐츠 생성 오류") 
@@ -150,7 +171,17 @@ export default function Home() {
                   <Youtube size={24} />
                   유튜브 쇼츠 대본
                 </h2>
-                <Copy size={18} className="text-gray-500 cursor-pointer hover:text-white transition" />
+                <div className="flex items-center gap-2">
+                  {copyStatus === 'youtube' && <span className="text-xs text-red-400 animate-pulse">복사됨!</span>}
+                  <Copy 
+                    size={18} 
+                    className={`cursor-pointer transition ${copyStatus === 'youtube' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                    onClick={() => {
+                      const text = result.includes("2.") ? result.split("2.")[1].split("3.")[0].trim() : "";
+                      handleCopy(text, 'youtube');
+                    }}
+                  />
+                </div>
               </div>
               <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed">
                 {result.includes("콘텐츠 생성 오류")
