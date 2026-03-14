@@ -60,9 +60,9 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="text-5xl md:text-8xl font-black tracking-tight leading-tight bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent"
+          className="text-5xl md:text-8xl font-black tracking-tight leading-tight bg-gradient-to-r from-purple-400 via-pink-500 to-orange-500 bg-clip-text text-transparent"
         >
-          AI 콘텐츠 생성 v2.2 (TEST)<br />자동으로 만드세요
+          콘텐츠를 마법처럼<br />자동으로 생성하세요
         </motion.h1>
 
         {/* Stats Dashboard */}
