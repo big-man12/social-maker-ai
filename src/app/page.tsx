@@ -22,11 +22,22 @@ export default function Home() {
     if (!input.trim()) return;
 
     setLoading(true);
+    setResult(null);
     try {
-      const content = await generateSocialContent(input);
-      setResult(content);
+      const res = await fetch('/api/generate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ input })
+      });
+      
+      const data = await res.json();
+      if (!res.ok) {
+        setResult(data.error || "생성 실패: 서버 응답 오류");
+      } else {
+        setResult(data.content);
+      }
     } catch (error) {
-      setResult("생성 실패: API 연결을 확인하세요.");
+      setResult("생성 실패: 네트워크 연결을 확인하세요.");
     } finally {
       setLoading(false);
     }
