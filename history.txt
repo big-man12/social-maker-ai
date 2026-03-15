@@ -19,3 +19,10 @@ User: 2026년 5월 14일까지(약 60일) 무제한으로 할수 없나?
 Assistant: [Explanation about 60-day limit for standard access tokens and how auto-posting keeps them refreshed without emojis]
 User: [New long-term token provided]
 Assistant: [Updating .env/Vercel and implementing Discord error alert without emojis]
+User: 배포 완료했나? 내가 올린 내용말해줘
+Assistant: [Checking Vercel status and Instagram post data with new token]
+User: 현재까지 작업을 version 1.0으로 구분하고 싶어
+Assistant: [Created git tag v1.0.0 for stable rollback]
+System: Registered rollback procedure to version 1.0 (v1.0.0). Created rollback_guide.md for the user.
+User: version 2.0 추가 작업해줘 (SaaS, 호스팅, AI 도구, 금융 등)
+Assistant: [Expanding data structure for High-Ticket revenue model v2.0 without emojis]
