@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({ success: true, id: result.id });
-  } catch (error: any) {
+  } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     console.error("Instagram API Route Error:", error);
     return NextResponse.json({ error: "서버 오류가 발생했습니다." }, { status: 500 });
   }

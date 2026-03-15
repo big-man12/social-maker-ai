@@ -33,7 +33,7 @@ export async function generateSocialContent(input: string) {
     const result = await model.generateContent(prompt);
     const response = await result.response;
     return response.text();
-  } catch (error: any) {
+  } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
     console.error("Content generation failed:", error);
     return `콘텐츠 생성 오류: ${error.message || "알 수 없는 에러"}. API 키가 올바른지, 할당량이 남았는지 확인해 주세요.`;
   }
