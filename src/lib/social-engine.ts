@@ -27,8 +27,8 @@ export async function generateSocialContent(input: string, category: string = 'g
     마케팅 포인트: ${selectedStrategy}
 
     [인스타그램 바이럴 및 SEO 전략]
-    - 핵심 목표: m-maker-ai.vercel.app 사이트 노출 및 고단가 수익 모델(High-Ticket) 홍보
-    - 필수 포함 사항: 하단에 '상세 정보는 프로필 링크 또는 m-maker-ai.vercel.app 에서 확인하세요' 문구 포함
+    - 핵심 목표: https://m-maker-ai.vercel.app 사이트 노출 및 고단가 수익 모델(High-Ticket) 홍보
+    - 필수 포함 사항: 하단에 '상세 정보는 프로필 링크 또는 https://m-maker-ai.vercel.app 에서 확인하세요' 문구 포함
     - 절대 준수 규칙: 이모지나 특수 기호를 절대 사용하지 말 것. 부드럽고 전문적인 텍스트로만 구성할 것
     - 구성: 브랜드 가치 제안 + 카테고리 특화 솔루션 + 사이트 주소 CTA + 해시태그
 

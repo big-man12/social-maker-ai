@@ -10,12 +10,17 @@ export async function getLatestProduct() {
       return JSON.parse(fileContent);
     }
     
-    // 2. 공개 URL 시도 (Vercel 배포 환경)
-    // 메인 사이트의 product.json URL을 직접 호출합니다.
-    const PUBLIC_DATA_URL = "https://money-maker-ai.vercel.app/src/data/product.json";
+    // 2. 공개 API 시도 (Vercel 배포 환경)
+    // 메인 사이트의 product API를 직접 호출합니다.
+    const PUBLIC_DATA_URL = "https://m-maker-ai.vercel.app/api/product";
     const res = await fetch(PUBLIC_DATA_URL, { next: { revalidate: 3600 } });
     if (res.ok) {
-        return await res.json();
+        const product = await res.json();
+        // 이미지 URL이 로컬 상대경로인 경우 절대 경로로 변환
+        if (product.image && product.image.startsWith('/')) {
+          product.image = `https://m-maker-ai.vercel.app${product.image}`;
+        }
+        return product;
     }
     
     return null;

@@ -36,3 +36,6 @@ User: 너를 믿어볼테니 수정사항 적용해
 Assistant: [Applying v2.0 fixes and local DB fallback]
 User: 버전별로 페이지 화면을 따로가져가야 할것 같다
 Assistant: [Creating dedicated v2.0 page at /v2]
+[2026-03-16 05:31:00] 배포 완료 및 버전 2.0 활성화
+- 주소: https://m-maker-ai.vercel.app/v2
+- 빌드 에러 해결 및 최종 푸시 성공
