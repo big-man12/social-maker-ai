@@ -6,7 +6,7 @@
  * - INSTAGRAM_ACCESS_TOKEN: Meta 개발자 앱에서 발급받은 액세스 토큰
  */
 
-export async function postToInstagram(imageUrl, caption) {
+export async function postToInstagram(imageUrl: string, caption: string) {
   const businessId = process.env.INSTAGRAM_BUSINESS_ID;
   const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
 
@@ -38,7 +38,7 @@ export async function postToInstagram(imageUrl, caption) {
 
     console.log("Instagram post success:", publishData.id);
     return { success: true, id: publishData.id };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Instagram post failed:", error.message);
     return { success: false, error: error.message };
   }
