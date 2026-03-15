@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { Sparkles, Instagram, Youtube, Send, Loader2, Share2, Copy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getHitStats, incrementHit } from '../lib/counter-store';
+import { getHitStats, incrementHit } from '../../lib/counter-store';
 
 export default function Home() {
   const [input, setInput] = useState("");

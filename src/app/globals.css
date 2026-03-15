@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
+@theme {
+  --color-accent: #2547f4;
+  --color-accent-secondary: #7c3aed;
+}
+
 :root {
   --background: #050505;
   --foreground: #ffffff;
-  --accent: #2547f4;
-  --accent-secondary: #7c3aed;
   --glass: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
 }

@@ -1,4 +1,4 @@
-import { generateSocialContent } from '@/lib/social-engine';
+import { generateSocialContent } from '../../../lib/social-engine';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {

@@ -28,3 +28,11 @@ User: version 2.0 추가 작업해줘 (SaaS, 호스팅, AI 도구, 금융 등)
 Assistant: [Expanding data structure for High-Ticket revenue model v2.0 without emojis]
 User: [Approved implementation plan for v2.0]
 Assistant: [Starting implementation of UI category selection and dynamic prompt mapping without emojis]
+User: 추가된 사항이 뭐야 로클은 이미지랑 모두 깨져버리네
+Assistant: [Explaining v2.0 features and diagnosing broken UI]
+User: 추가된 사항이 뭐야 로클은 이미지랑 모두 깨져버리네
+Assistant: [Explaining v2.0 and fixing broken UI]
+User: 너를 믿어볼테니 수정사항 적용해
+Assistant: [Applying v2.0 fixes and local DB fallback]
+User: 버전별로 페이지 화면을 따로가져가야 할것 같다
+Assistant: [Creating dedicated v2.0 page at /v2]

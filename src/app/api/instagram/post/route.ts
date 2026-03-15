@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { postToInstagram } from '@/lib/instagram';
+import { postToInstagram } from '../../../../lib/instagram';
 
 export async function POST(request: Request) {
   try {
