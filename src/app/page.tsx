@@ -1,4 +1,3 @@
-```javascript
 "use client";
 
 import React, { useState } from 'react';
@@ -15,16 +14,6 @@ export default function Home() {
   const [instagramLoading, setInstagramLoading] = useState(false);
   const [productImage, setProductImage] = useState<string | null>(null);
 
-  const handleCopy = async (text: string, type: string) => {
-    try {
-      await navigator.clipboard.writeText(text);
-      setCopyStatus(type);
-      setTimeout(() => setCopyStatus(null), 2000);
-    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
-      console.error('Failed to copy text: ', error);
-    }
-  };
-
   // 텍스트 추출 유틸리티 (헤더 기반)
   const extractSection = (content: string, startHeader: string, endHeader?: string) => {
     if (!content) return "";
@@ -39,6 +28,16 @@ export default function Home() {
       }
     }
     return subContent;
+  };
+
+  const handleCopy = async (text: string, type: string) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopyStatus(type);
+      setTimeout(() => setCopyStatus(null), 2000);
+    } catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
+      console.error('Failed to copy text: ', error);
+    }
   };
 
   React.useEffect(() => {
@@ -57,7 +56,6 @@ export default function Home() {
   const handleInstagramPost = async () => {
     if (!result) return;
     
-    // 이미지가 없을 경우 생성된 이미지 프롬프트를 사용할 수는 없으므로 기본 이미지라도 할당 시도
     const postImage = productImage || "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000";
 
     setInstagramLoading(true);
@@ -114,7 +112,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen p-4 md:p-12 max-w-5xl mx-auto space-y-12 pb-24">
-      {/* Hero Section */}
       <section className="text-center space-y-6 pt-12">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -134,7 +131,6 @@ export default function Home() {
           콘텐츠를 마법처럼<br />자동으로 생성하세요
         </motion.h1>
 
-        {/* Stats Dashboard */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -153,21 +149,20 @@ export default function Home() {
               <span className="text-xs text-purple-500/50">+</span>
             </div>
           </div>
-              <div className="glass-card px-8 py-4 text-left min-w-[200px] border-pink-500/20">
-                <p className="text-pink-400 text-xs font-bold uppercase tracking-widest mb-1">Today&apos;s Magic</p>
-                <div className="text-3xl font-black text-white">
-                  <motion.span
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                  >
-                    {stats.today.toLocaleString()}
-                  </motion.span>
-                </div>
-              </div>
+          <div className="glass-card px-8 py-4 text-left min-w-[200px] border-pink-500/20">
+            <p className="text-pink-400 text-xs font-bold uppercase tracking-widest mb-1">Today&apos;s Magic</p>
+            <div className="text-3xl font-black text-white">
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                {stats.today.toLocaleString()}
+              </motion.span>
+            </div>
+          </div>
         </motion.div>
       </section>
 
-      {/* Input Section */}
       <section className="max-w-2xl mx-auto">
         <form onSubmit={handleSubmit} className="relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
@@ -190,7 +185,6 @@ export default function Home() {
         </form>
       </section>
 
-      {/* Result Section */}
       <AnimatePresence>
         {result && (
           <motion.section 
@@ -204,43 +198,42 @@ export default function Home() {
                   <Instagram size={24} />
                   인스타그램 콘텐츠
                 </h2>
-              <div className="flex items-center gap-2">
-                {copyStatus === 'instagram' && <span className="text-xs text-pink-400 animate-pulse">복사됨!</span>}
-                <Copy 
-                  size={18} 
-                  className={`cursor-pointer transition ${copyStatus === 'instagram' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
-                  onClick={() => {
-                    const text = extractSection(result, "### 인스타그램 캡션", "### 유튜브 쇼츠");
-                    handleCopy(text || result, 'instagram');
-                  }}
-                />
+                <div className="flex items-center gap-2">
+                  {copyStatus === 'instagram' && <span className="text-xs text-pink-400 animate-pulse">복사됨!</span>}
+                  <Copy 
+                    size={18} 
+                    className={`cursor-pointer transition ${copyStatus === 'instagram' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                    onClick={() => {
+                      const text = extractSection(result, "### 인스타그램 캡션", "### 유튜브 쇼츠");
+                      handleCopy(text || result, 'instagram');
+                    }}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed max-h-[400px] overflow-y-auto">
-              {result.includes("콘텐츠 생성 오류") 
-                ? <span className="text-red-400">{result}</span>
-                : (extractSection(result, "### 인스타그램 캡션", "### 유튜브 쇼츠") || "내용을 분석 중입니다...")}
-            </div>
+              <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed max-h-[400px] overflow-y-auto">
+                {result.includes("콘텐츠 생성 오류") 
+                  ? <span className="text-red-400">{result}</span>
+                  : (extractSection(result, "### 인스타그램 캡션", "### 유튜브 쇼츠") || "내용을 분석 중입니다...")}
+              </div>
 
-            {/* Instagram Post Button */}
-            {!result.includes("콘텐츠 생성 오류") && (
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={handleInstagramPost}
-                disabled={instagramLoading}
-                className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-orange-600 text-white font-bold flex items-center justify-center gap-2 shadow-lg shadow-pink-500/20 disabled:opacity-50"
-              >
-                {instagramLoading ? <Loader2 size={18} className="animate-spin" /> : <Share2 size={18} />}
-                <span>인스타그램에 즉시 포스팅</span>
-              </motion.button>
-            )}
-            {!productImage && !instagramLoading && (
-              <p className="text-[10px] text-gray-500 text-center italic">
-                * 실제 상품 이미지를 찾을 수 없어 기본 이미지로 게시됩니다.
-              </p>
-            )}
-          </div>
+              {!result.includes("콘텐츠 생성 오류") && (
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  onClick={handleInstagramPost}
+                  disabled={instagramLoading}
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-orange-600 text-white font-bold flex items-center justify-center gap-2 shadow-lg shadow-pink-500/20 disabled:opacity-50"
+                >
+                  {instagramLoading ? <Loader2 size={18} className="animate-spin" /> : <Share2 size={18} />}
+                  <span>인스타그램에 즉시 포스팅</span>
+                </motion.button>
+              )}
+              {!productImage && !instagramLoading && (
+                <p className="text-[10px] text-gray-500 text-center italic">
+                  * 실제 상품 이미지를 찾을 수 없어 기본 이미지로 게시됩니다.
+                </p>
+              )}
+            </div>
 
             <div className="glass-card space-y-4">
               <div className="flex items-center justify-between">
@@ -248,24 +241,24 @@ export default function Home() {
                   <Youtube size={24} />
                   유튜브 쇼츠 대본
                 </h2>
-              <div className="flex items-center gap-2">
-                {copyStatus === 'youtube' && <span className="text-xs text-red-400 animate-pulse">복사됨!</span>}
-                <Copy 
-                  size={18} 
-                  className={`cursor-pointer transition ${copyStatus === 'youtube' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
-                  onClick={() => {
-                    const text = extractSection(result, "### 유튜브 쇼츠", "### 카드뉴스");
-                    handleCopy(text || result, 'youtube');
-                  }}
-                />
+                <div className="flex items-center gap-2">
+                  {copyStatus === 'youtube' && <span className="text-xs text-red-400 animate-pulse">복사됨!</span>}
+                  <Copy 
+                    size={18} 
+                    className={`cursor-pointer transition ${copyStatus === 'youtube' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                    onClick={() => {
+                      const text = extractSection(result, "### 유튜브 쇼츠", "### 카드뉴스");
+                      handleCopy(text || result, 'youtube');
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed max-h-[400px] overflow-y-auto">
+                {result.includes("콘텐츠 생성 오류")
+                  ? "데이터 생성 실패"
+                  : (extractSection(result, "### 유튜브 쇼츠", "### 카드뉴스") || "생성 중...")}
               </div>
             </div>
-            <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed max-h-[400px] overflow-y-auto">
-              {result.includes("콘텐츠 생성 오류")
-                ? "데이터 생성 실패"
-                : (extractSection(result, "### 유튜브 쇼츠", "### 카드뉴스") || "생성 중...")}
-            </div>
-          </div>
 
             <div className="md:col-span-2 glass-card space-y-4 bg-gradient-to-br from-purple-900/10 to-transparent border-purple-500/10">
               <h2 className="text-xl font-bold flex items-center gap-2 text-purple-400">
