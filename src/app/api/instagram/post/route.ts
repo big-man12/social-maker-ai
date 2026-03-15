@@ -38,7 +38,7 @@ export async function POST(request: Request) {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            content: `인스타그램 포스팅 성공 알림\n내용: ${caption}\n이미지: ${imageUrl}`
+            content: `인스타그램 포스팅 성공 알림\n---\n내용 요약: ${caption.substring(0, 100)}...\n이미지: ${imageUrl}\n---\n이 문구는 시스템을 통해 자동으로 게시되었습니다.`
           })
         });
       } catch (discordError) {
