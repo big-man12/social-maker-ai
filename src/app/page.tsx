@@ -194,6 +194,34 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
+
+        {/* 고단가 수익 정보 카드 섹션 추가 */}
+        {selectedCategory !== 'general' && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 max-w-2xl mx-auto"
+          >
+            <div className="glass-card p-4 border-green-500/10 bg-green-500/5">
+              <p className="text-[10px] text-green-400 font-bold uppercase mb-1">High-Ticket Revenue</p>
+              <p className="text-sm text-gray-300">
+                {selectedCategory === 'saas' && '한 건당 $150~$500 또는 반복 수익'}
+                {selectedCategory === 'hosting' && '신규 가입 건당 $200~$350 고정 수익'}
+                {selectedCategory === 'ai_tools' && '구독료의 30~50% 반복 수익'}
+                {selectedCategory === 'finance' && '가입/실거래당 최고가 CPA 지급'}
+              </p>
+            </div>
+            <div className="glass-card p-4 border-blue-500/10 bg-blue-500/5">
+              <p className="text-[10px] text-blue-400 font-bold uppercase mb-1">Target Platforms</p>
+              <p className="text-sm text-gray-300">
+                {selectedCategory === 'saas' && 'HubSpot, Shopify'}
+                {selectedCategory === 'hosting' && 'WP Engine, Bluehost'}
+                {selectedCategory === 'ai_tools' && 'Jasper, Speechify'}
+                {selectedCategory === 'finance' && '주요 증권사 및 대출 서비스'}
+              </p>
+            </div>
+          </motion.div>
+        )}
       </section>
 
       <section className="max-w-2xl mx-auto">
