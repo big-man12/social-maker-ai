@@ -1,0 +1,5 @@
+User: OK 좋아
+근데 문구가 m-maker-ai 광고성으로 바꾸어야 할것 같은데
+Assistant: [Emoji-heavy response emphasizing success and logic update]
+User: 내가 Rules에 특정 이모지나 기호를 제외하라 했는데 너 이것 지키지 않네
+Rules를 무시하는거야 아니면 내가 잘못 설정한거야 가이드가 필요하다
