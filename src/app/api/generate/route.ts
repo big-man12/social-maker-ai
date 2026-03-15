@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    const { input } = await request.json();
+    const { input, category } = await request.json();
     
     if (!input) {
       return NextResponse.json({ error: "입력 내용이 없습니다." }, { status: 400 });
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Vercel 서버에서 GOOGLE_API_KEY를 찾을 수 없습니다. 환경 변수 설정을 확인하고 반드시 Redeploy 해주세요." }, { status: 500 });
     }
 
-    const content = await generateSocialContent(input);
+    const content = await generateSocialContent(input, category || 'general');
     
     // social-engine.ts에서 에러 시 반환하는 문자열 체크
     if (content.includes("콘텐츠 생성 오류")) {

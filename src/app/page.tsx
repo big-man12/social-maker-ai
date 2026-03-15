@@ -84,6 +84,16 @@ export default function Home() {
     }
   };
 
+  const [selectedCategory, setSelectedCategory] = useState("general");
+
+  const categories = [
+    { id: 'general', name: '일반 제품', icon: Sparkles },
+    { id: 'saas', name: 'SaaS/소프트웨어', icon: Send },
+    { id: 'hosting', name: '웹 호스팅', icon: Share2 },
+    { id: 'ai_tools', name: 'AI 도구', icon: Sparkles },
+    { id: 'finance', name: '금융/대출', icon: Copy }
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
@@ -94,7 +104,7 @@ export default function Home() {
       const res = await fetch('/api/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ input })
+        body: JSON.stringify({ input, category: selectedCategory })
       });
       
       const data = await res.json();
@@ -130,6 +140,29 @@ export default function Home() {
         >
           콘텐츠를 마법처럼<br />자동으로 생성하세요
         </motion.h1>
+
+        {/* 카테고리 선택기 추가 */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="flex flex-wrap justify-center gap-3 mt-8"
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl border transition-all ${
+                selectedCategory === cat.id 
+                ? 'bg-purple-600 border-purple-400 text-white shadow-lg shadow-purple-500/30' 
+                : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'
+              }`}
+            >
+              <cat.icon size={16} />
+              <span className="font-medium text-sm">{cat.name}</span>
+            </button>
+          ))}
+        </motion.div>
 
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
@@ -171,7 +204,7 @@ export default function Home() {
               type="text" 
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="블로그 주소나 제품명을 입력하세요..."
+              placeholder={`${selectedCategory === 'saas' ? 'SaaS 서비스 명이나 기능을 입력하세요...' : '홍보할 내용을 입력하세요...'}`}
               className="flex-1 bg-transparent border-none outline-none px-4 text-white placeholder-gray-500 text-lg"
             />
             <button 
