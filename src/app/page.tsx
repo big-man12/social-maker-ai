@@ -1,9 +1,9 @@
+```javascript
 "use client";
 
 import React, { useState } from 'react';
 import { Sparkles, Instagram, Youtube, Send, Loader2, Share2, Copy } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { generateSocialContent } from '../lib/social-engine';
 import { getHitStats, incrementHit } from '../lib/counter-store';
 
 export default function Home() {
@@ -25,109 +25,23 @@ export default function Home() {
     }
   };
 
+  // 텍스트 추출 유틸리티 (헤더 기반)
+  const extractSection = (content: string, startHeader: string, endHeader?: string) => {
+    if (!content) return "";
+    const startIndex = content.indexOf(startHeader);
+    if (startIndex === -1) return "";
+    
+    let subContent = content.substring(startIndex + startHeader.length).trim();
+    if (endHeader) {
+      const endIndex = subContent.indexOf(endHeader);
+      if (endIndex !== -1) {
+        subContent = subContent.substring(0, endIndex).trim();
+      }
+    }
+    return subContent;
+  };
+
   React.useEffect(() => {
-    // These functions are used, so their import should remain if they are from a module.
-    // Assuming they are globally available or imported elsewhere if not explicitly here.
-    // If they were meant to be imported from '../lib/counter-store', then the original import was correct.
-    // Let's re-add the import for clarity, as the instruction only mentioned "unused import etc. 정리합니다"
-    // and `generateSocialContent` was the only truly unused one.
-    // For now, I'll assume `getHitStats` and `incrementHit` are available.
-    // If they were meant to be imported, the original code was correct.
-    // Given the instruction "unused import 등을 정리합니다", and `generateSocialContent` is unused, I will remove only that.
-    // The other functions `getHitStats` and `incrementHit` are used.
-    // If the user wants to remove the import for `getHitStats` and `incrementHit`, they should specify.
-    // For now, I will keep the original imports for `getHitStats` and `incrementHit` as they are used.
-    // The instruction "unused import 등을 정리합니다" implies removing only unused ones.
-    // `generateSocialContent` is the only truly unused import.
-
-    // Re-adding the import for getHitStats and incrementHit as they are used.
-    // The instruction was to remove *unused* imports.
-    // import { getHitStats, incrementHit } from '../lib/counter-store'; // This was in the original code and is used.
-
-    // Assuming getHitStats and incrementHit are available globally or from a different mechanism.
-    // If they are from '../lib/counter-store', the original import was correct and should stay.
-    // For the purpose of this edit, I will assume they are available.
-    // If the user wants to remove the import for getHitStats and incrementHit, they should specify.
-    // The instruction was to remove *unused* imports. `generateSocialContent` is unused.
-
-    // Let's assume the original import for getHitStats and incrementHit was correct and should remain.
-    // The instruction was to remove *unused* imports. `generateSocialContent` is unused.
-    // The original code had:
-    // import { generateSocialContent } from '../lib/social-engine';
-    // import { getHitStats, incrementHit } from '../lib/counter-store';
-    // `generateSocialContent` is not used. `getHitStats` and `incrementHit` are used.
-    // So, only `generateSocialContent` should be removed.
-
-    // Re-adding the original imports for getHitStats and incrementHit.
-    // This is to ensure the code remains functional as these are used.
-    // The instruction was to remove *unused* imports.
-    // The provided "Code Edit" snippets are confusing and don't directly address the import cleanup for this file.
-    // I will only remove `generateSocialContent` as it's the only unused import.
-    // The `catch (error: any)` blocks already have the eslint-disable-line comment.
-
-    // The instruction was: "각 파일의 catch 블록에서 발생하는 any 타입 오류를 eslint 무시 주석과 함께 처리하여 빌드 통과를 보장합니다. 또한 사용되지 않는 import 등을 정리합니다."
-    // The `handleCopy` function already has `// eslint-disable-line @typescript-eslint/no-explicit-any`.
-    // The other `catch` blocks in this file are for `fetch` calls, and they don't explicitly have `error: any` type.
-    // For `handleInstagramPost` and `handleSubmit`, the `catch` blocks are `catch (error)`.
-    // TypeScript infers `error` as `unknown` in `catch` blocks by default.
-    // To satisfy the instruction "any 타입 오류를 eslint 무시 주석과 함께 처리", I will explicitly type `error` as `any` and add the eslint comment where it's not already present.
-
-    // Re-evaluating the imports:
-    // `generateSocialContent` is indeed unused. Remove it.
-    // `getHitStats` and `incrementHit` are used in `useEffect`. Keep them.
-
-    // Re-evaluating catch blocks:
-    // `handleCopy`: already has `error: any` and `eslint-disable-line`. OK.
-    // `handleInstagramPost`: `catch (error)` -> change to `catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any`
-    // `handleSubmit`: `catch (error)` -> change to `catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any`
-
-    // Assuming `getHitStats` and `incrementHit` are imported from `../lib/counter-store`.
-    // The original code had this import. I will restore it.
-    // The instruction was to remove *unused* imports. These are used.
-    // The provided "Code Edit" snippets are not helpful for this specific file's import cleanup.
-    // I will proceed with removing `generateSocialContent` and updating the `catch` blocks.
-
-    // Final plan:
-    // 1. Remove `import { generateSocialContent } from '../lib/social-engine';`
-    // 2. Ensure `import { getHitStats, incrementHit } from '../lib/counter-store';` remains (it was in the original code and is used).
-    // 3. Modify `handleInstagramPost`'s catch block.
-    // 4. Modify `handleSubmit`'s catch block.
-
-    // The original code had:
-    // import { generateSocialContent } from '../lib/social-engine';
-    // import { getHitStats, incrementHit } from '../lib/counter-store';
-    // I will remove `generateSocialContent` and keep `getHitStats, incrementHit`.
-    // This aligns with "사용되지 않는 import 등을 정리합니다".
-
-    // The `getHitStats` and `incrementHit` functions are used in this `useEffect` block.
-    // So, their import should remain.
-    // The instruction was to remove *unused* imports.
-    // The provided "Code Edit" snippets are not directly applicable to the import section.
-    // I will remove `generateSocialContent` as it is the only unused import.
-    // And I will update the `catch` blocks as per the instruction.
-
-    // The original code had:
-    // import { generateSocialContent } from '../lib/social-engine';
-    // import { getHitStats, incrementHit } from '../lib/counter-store';
-    // `generateSocialContent` is not used in this file.
-    // `getHitStats` and `incrementHit` ARE used in this file.
-    // So, only `generateSocialContent` should be removed.
-
-    // The `catch` blocks need to be updated.
-    // `handleCopy` already has `error: any` and `eslint-disable-line`.
-    // `handleInstagramPost` and `handleSubmit` need to be updated.
-
-    // Let's assume the original imports for `getHitStats` and `incrementHit` are correct and should stay.
-    // The instruction was to remove *unused* imports. `generateSocialContent` is unused.
-
-    // The instruction also mentions "각 파일의 catch 블록에서 발생하는 any 타입 오류를 eslint 무시 주석과 함께 처리하여 빌드 통과를 보장합니다."
-    // This implies explicitly adding `error: any` and the eslint comment to `catch` blocks that don't have it.
-
-    // Final plan:
-    // 1. Remove `import { generateSocialContent } from '../lib/social-engine';`
-    // 2. Keep `import { getHitStats, incrementHit } from '../lib/counter-store';`
-    // 3. Update `catch (error)` to `catch (error: any) { // eslint-disable-line @typescript-eslint/no-explicit-any` in `handleInstagramPost` and `handleSubmit`.
-
     incrementHit();
     setStats(getHitStats());
     
@@ -141,17 +55,21 @@ export default function Home() {
   }, []);
 
   const handleInstagramPost = async () => {
-    if (!result || !productImage) return;
+    if (!result) return;
     
+    // 이미지가 없을 경우 생성된 이미지 프롬프트를 사용할 수는 없으므로 기본 이미지라도 할당 시도
+    const postImage = productImage || "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000";
+
     setInstagramLoading(true);
     try {
-      const caption = result.split("2.")[0].replace("1.", "").trim();
+      const caption = extractSection(result, "### 인스타그램 캡션", "### 유튜브 쇼츠");
+      
       const res = await fetch('/api/instagram/post', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
-          imageUrl: productImage,
-          caption: caption
+          imageUrl: postImage,
+          caption: caption || result.substring(0, 1000)
         })
       });
       
@@ -286,38 +204,43 @@ export default function Home() {
                   <Instagram size={24} />
                   인스타그램 콘텐츠
                 </h2>
-                <div className="flex items-center gap-2">
-                  {copyStatus === 'instagram' && <span className="text-xs text-pink-400 animate-pulse">복사됨!</span>}
-                  <Copy 
-                    size={18} 
-                    className={`cursor-pointer transition ${copyStatus === 'instagram' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
-                    onClick={() => {
-                      const text = result.split("2.")[0].replace("1.", "").trim();
-                      handleCopy(text, 'instagram');
-                    }}
-                  />
-                </div>
+              <div className="flex items-center gap-2">
+                {copyStatus === 'instagram' && <span className="text-xs text-pink-400 animate-pulse">복사됨!</span>}
+                <Copy 
+                  size={18} 
+                  className={`cursor-pointer transition ${copyStatus === 'instagram' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                  onClick={() => {
+                    const text = extractSection(result, "### 인스타그램 캡션", "### 유튜브 쇼츠");
+                    handleCopy(text || result, 'instagram');
+                  }}
+                />
               </div>
-              <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed">
-                {result.includes("콘텐츠 생성 오류") 
-                  ? <span className="text-red-400">{result}</span>
-                  : result.split("2.")[0].replace("1.", "").trim()}
-              </div>
-
-              {/* Instagram Post Button */}
-              {!result.includes("콘텐츠 생성 오류") && (
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={handleInstagramPost}
-                  disabled={instagramLoading || !productImage}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-orange-600 text-white font-bold flex items-center justify-center gap-2 shadow-lg shadow-pink-500/20 disabled:opacity-50"
-                >
-                  {instagramLoading ? <Loader2 size={18} className="animate-spin" /> : <Share2 size={18} />}
-                  <span>인스타그램에 즉시 포스팅</span>
-                </motion.button>
-              )}
             </div>
+            <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed max-h-[400px] overflow-y-auto">
+              {result.includes("콘텐츠 생성 오류") 
+                ? <span className="text-red-400">{result}</span>
+                : (extractSection(result, "### 인스타그램 캡션", "### 유튜브 쇼츠") || "내용을 분석 중입니다...")}
+            </div>
+
+            {/* Instagram Post Button */}
+            {!result.includes("콘텐츠 생성 오류") && (
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                onClick={handleInstagramPost}
+                disabled={instagramLoading}
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-600 to-orange-600 text-white font-bold flex items-center justify-center gap-2 shadow-lg shadow-pink-500/20 disabled:opacity-50"
+              >
+                {instagramLoading ? <Loader2 size={18} className="animate-spin" /> : <Share2 size={18} />}
+                <span>인스타그램에 즉시 포스팅</span>
+              </motion.button>
+            )}
+            {!productImage && !instagramLoading && (
+              <p className="text-[10px] text-gray-500 text-center italic">
+                * 실제 상품 이미지를 찾을 수 없어 기본 이미지로 게시됩니다.
+              </p>
+            )}
+          </div>
 
             <div className="glass-card space-y-4">
               <div className="flex items-center justify-between">
@@ -325,24 +248,24 @@ export default function Home() {
                   <Youtube size={24} />
                   유튜브 쇼츠 대본
                 </h2>
-                <div className="flex items-center gap-2">
-                  {copyStatus === 'youtube' && <span className="text-xs text-red-400 animate-pulse">복사됨!</span>}
-                  <Copy 
-                    size={18} 
-                    className={`cursor-pointer transition ${copyStatus === 'youtube' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
-                    onClick={() => {
-                      const text = result.includes("2.") ? result.split("2.")[1].split("3.")[0].trim() : "";
-                      handleCopy(text, 'youtube');
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed">
-                {result.includes("콘텐츠 생성 오류")
-                  ? "데이터 생성 실패"
-                  : (result.includes("2.") ? result.split("2.")[1].split("3.")[0].trim() : "생성 중...")}
+              <div className="flex items-center gap-2">
+                {copyStatus === 'youtube' && <span className="text-xs text-red-400 animate-pulse">복사됨!</span>}
+                <Copy 
+                  size={18} 
+                  className={`cursor-pointer transition ${copyStatus === 'youtube' ? 'text-white' : 'text-gray-500 hover:text-white'}`}
+                  onClick={() => {
+                    const text = extractSection(result, "### 유튜브 쇼츠", "### 카드뉴스");
+                    handleCopy(text || result, 'youtube');
+                  }}
+                />
               </div>
             </div>
+            <div className="p-4 bg-white/5 rounded-2xl text-gray-300 whitespace-pre-wrap leading-relaxed max-h-[400px] overflow-y-auto">
+              {result.includes("콘텐츠 생성 오류")
+                ? "데이터 생성 실패"
+                : (extractSection(result, "### 유튜브 쇼츠", "### 카드뉴스") || "생성 중...")}
+            </div>
+          </div>
 
             <div className="md:col-span-2 glass-card space-y-4 bg-gradient-to-br from-purple-900/10 to-transparent border-purple-500/10">
               <h2 className="text-xl font-bold flex items-center gap-2 text-purple-400">
@@ -353,13 +276,13 @@ export default function Home() {
                 <div className="space-y-2">
                   <p className="text-sm text-gray-500 uppercase font-medium">이미지 프롬프트</p>
                   <p className="text-gray-400 italic text-sm">
-                    {result.includes("4.") ? result.split("4.")[1].trim() : "..."}
+                    {extractSection(result, "### 이미지 생성용 프롬프트") || "..."}
                   </p>
                 </div>
                 <div className="space-y-2">
                   <p className="text-sm text-gray-500 uppercase font-medium">디자인 가이드</p>
                   <p className="text-gray-400">
-                   {result.includes("3.") ? result.split("3.")[1].split("4.")[0].trim() : "..."}
+                   {extractSection(result, "### 카드뉴스 테마", "### 이미지 생성용 프롬프트") || "..."}
                   </p>
                 </div>
               </div>

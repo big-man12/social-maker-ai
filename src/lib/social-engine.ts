@@ -23,10 +23,17 @@ export async function generateSocialContent(input: string) {
     - 댓글 참여를 유도하는 질문 포함
 
     [응답 형식]
-    1. 인스타그램 캡션: (강력한 Hook + 본문 + 바이럴 해시태그 10개 이상)
-    2. 유튜브 쇼츠 대본: (15초 분량, 1초 내 시선 집중 오프닝, 급박한 정보 전달)
-    3. 카드뉴스 테마: (강렬한 대조 색상, 시선을 끄는 폰트 추천)
-    4. 이미지 생성용 프롬프트: (영문, Cinematic, Unreal Engine 5 render, Product Photography style)
+    ### 인스타그램 캡션
+    (강력한 Hook + 본문 + 바이럴 해시태그 10개 이상)
+
+    ### 유튜브 쇼츠 대본
+    (15초 분량, 1초 내 시선 집중 오프닝, 급박한 정보 전달)
+
+    ### 카드뉴스 테마
+    (강렬한 대조 색상, 시선을 끄는 폰트 추천)
+
+    ### 이미지 생성용 프롬프트
+    (영문, Cinematic, Unreal Engine 5 render, Product Photography style)
   `;
 
   try {
